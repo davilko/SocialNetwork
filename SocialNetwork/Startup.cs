@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SocialNetwork.Attributes;
+using SocialNetwork.Business.DI;
+using SocialNetwork.Repository.DI;
 
 namespace SocialNetwork
 {
@@ -25,6 +28,8 @@ namespace SocialNetwork
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.RegisterDataAccessServices("");
+            services.RegisterBusinessServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

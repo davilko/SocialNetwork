@@ -20,4 +20,9 @@
   <ItemGroup>
     <_ContentIncludedByDefault Remove="e2e\tsconfig.e2e.json" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Business.DI\SocialNetwork.Business.DI.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Business\SocialNetwork.Business.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Repository.DI\SocialNetwork.Repository.DI.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Business.Contract\SocialNetwork.Business.Contract.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Repository\SocialNetwork.Repository.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Utility\SocialNetwork.Utility.csproj" />
+  </ItemGroup>
+</Project>

@@ -4,10 +4,10 @@
 /SocialNetwork/dist
 /SocialNetwork/tmp
 /SocialNetwork/out-tsc
-/SocialNetwork/bin
+*/bin/*
 /SocialNetwork/object
 /SocialNetwork/wwwroot
-/SocialNetwork/obj
+*/obj/*
 
 # dependencies
 /SocialNetwork/node_modules
