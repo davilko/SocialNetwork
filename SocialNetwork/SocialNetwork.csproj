@@ -24,5 +24,6 @@
     <ProjectReference Include="..\SocialNetwork.Business.DI\SocialNetwork.Business.DI.csproj" />
     <ProjectReference Include="..\SocialNetwork.Business\SocialNetwork.Business.csproj" />
     <ProjectReference Include="..\SocialNetwork.Repository.DI\SocialNetwork.Repository.DI.csproj" />
+    <ProjectReference Include="..\SocialNetwork.Security\SocialNetwork.Security.csproj" />
   </ItemGroup>
 </Project>
