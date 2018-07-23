@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Frontend" />
+    <Folder Include="Frontend\src\app\components" />
     <Folder Include="wwwroot" />
     <Folder Include="wwwroot\" />
   </ItemGroup>

@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SocialNetwork.Business.Contract;
-using SocialNetwork.Helpers;
+using SocialNetwork.Security.Models;
 
 namespace SocialNetwork.Attributes
 {

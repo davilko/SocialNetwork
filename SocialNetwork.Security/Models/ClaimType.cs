@@ -1,10 +1,5 @@
-﻿namespace SocialNetwork.Helpers
+﻿namespace SocialNetwork.Security.Models
 {
-    public class Constants
-    {
-        
-    }
-
     public static class ClaimType
     {
         public static string UserId => "uuid";

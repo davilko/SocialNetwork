@@ -34,6 +34,7 @@ namespace SocialNetwork
                 app.UseDeveloperExceptionPage();
             }
             
+            app.UseJwtAuthentication("/api/auth/token");
             app.Use(async (context, next) => {
                 await next();
                 if (context.Response.StatusCode == 404 &&
@@ -47,8 +48,8 @@ namespace SocialNetwork
             app.UseMvcWithDefaultRoute();
             app.UseDefaultFiles();
             app.UseStaticFiles();
-
             app.UseMvc();
+
         }
     }
 }

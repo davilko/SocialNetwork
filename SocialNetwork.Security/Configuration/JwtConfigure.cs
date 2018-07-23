@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using SocialNetwork.Configuration;
+using SocialNetwork.Security.Middleware;
 
 namespace SocialNetwork.Security.Configuration
 {
@@ -12,30 +14,12 @@ namespace SocialNetwork.Security.Configuration
         { 
             
             JwtTokenDefinitions.LoadFromConfiguration(configuration);
-            services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters()
-                    {
-                        IssuerSigningKey = JwtTokenDefinitions.IssuerSigningKey,
-
-                        ValidAudience = JwtTokenDefinitions.Audience,
-
-                        ValidIssuer = JwtTokenDefinitions.Issuer,
-
-                        ValidateIssuerSigningKey = JwtTokenDefinitions.ValidateIssuerSigningKey,
-
-                        ValidateLifetime = JwtTokenDefinitions.ValidateLifetime,
-
-                        ClockSkew = JwtTokenDefinitions.ClockSkew
-                    };
-                }
-            );
-
             services.AddSingleton<ITokenManager, TokenManager>();
+        }
+
+        public static IApplicationBuilder UseJwtAuthentication(this IApplicationBuilder builder, string loginPath)
+        {
+            return builder.UseMiddleware<AuthenticationMiddleware>(loginPath);
         }
     }
 }

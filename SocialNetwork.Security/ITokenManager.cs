@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
-using SocialNetwork.Business.Contract.Models;
+using SocialNetwork.Security.Models;
 
 namespace SocialNetwork.Security
 {
