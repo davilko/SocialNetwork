@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SocialNetwork.Security.Attribute;
 
 namespace SocialNetwork.Controllers
 {
@@ -10,6 +11,7 @@ namespace SocialNetwork.Controllers
     public class ValuesController : Controller
     {
         // GET api/values
+        [Authorization(Roles = "Admin")]
         [HttpGet]
         public IEnumerable<string> Get()
         {

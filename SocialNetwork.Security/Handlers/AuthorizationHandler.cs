@@ -38,7 +38,7 @@ namespace SocialNetwork.Security.Handlers
                 var roles = context.User.Claims
                     .Where(c => c.Type == ClaimType.Role)
                     .Select(c => c.Value);
-
+                
                 var found = requirement.AllowedRoles.Any(r => roles.Contains(r, StringComparer.OrdinalIgnoreCase));
                 
                 if (found)
