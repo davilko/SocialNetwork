@@ -7,26 +7,16 @@ using SocialNetwork.Security.Models;
 
 namespace SocialNetwork.Security.Handlers
 {
-    public class RolesAuthorizationRequirement  : AuthorizationHandler<RolesAuthorizationRequirement>, IAuthorizationRequirement
+    public class RolesAuthorizationRequirement  : DefaultAuthorizationHandler<RolesAuthorizationRequirement>, IAuthorizationRequirement
     {
         public IEnumerable<string> AllowedRoles { get; }
         
         public RolesAuthorizationRequirement(IEnumerable<string> allowedRoles)
         {
-            if (allowedRoles == null)
-            {
-                throw new ArgumentNullException(nameof(allowedRoles));
-            }
-
-            if (!allowedRoles.Any())
-            {
-                throw new InvalidOperationException();
-            }
-            
             AllowedRoles = allowedRoles;
         }
         
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RolesAuthorizationRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationContext context, RolesAuthorizationRequirement requirement)
         {
             if (context.User != null)
             {
@@ -43,7 +33,7 @@ namespace SocialNetwork.Security.Handlers
                 
                 if (found)
                 {
-                    context.Succeed(requirement);
+                    context.Success();
                 }
             }
             

@@ -3,6 +3,6 @@
     public static class ClaimType
     {
         public static string UserId => "uuid";
-        public static string Role => "role";
+        public static string Role => "myrole";
     }
 }

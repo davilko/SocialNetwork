@@ -35,9 +35,15 @@ namespace SocialNetwork.Security.Attribute
         
         public bool IsReusable => true;
         
-        public  Task OnAuthorizationAsync(AuthorizationFilterContext context)
+        public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
-            return Task.CompletedTask;
+            var authorizationService = context.HttpContext.RequestServices.GetRequiredService<IAuthorizationService>();
+            var result = await authorizationService.AuthorizeAsync(context.HttpContext.User, Policy);
+
+            if (!result.Succeeded)
+            {
+                context.Result = new ForbidResult("Jwt");
+            }
         }
     }
 }

@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using SocialNetwork.Security.Handlers;
 
 namespace SocialNetwork.Security.Provider
 {
     public class AuthorizationRolePolicy
     {
-        public AuthorizationRolePolicy(IEnumerable<string> roles)
+        public AuthorizationRolePolicy(IAuthorizationRequirement roles)
         {
-            Roles = roles;
+            RolesRequirement = roles;
         }
 
-        public IEnumerable<string> Roles { get; private set; }
+        public IAuthorizationRequirement RolesRequirement { get; private set; }
         
-        public static async Task<AuthorizationRolePolicy> CombineAsync(IEnumerable<IAuthorizeData> authorizeData)
+        public static Task<AuthorizationRolePolicy> CombineAsync(IEnumerable<IAuthorizeData> authorizeData)
         {
             if (authorizeData == null)
             {
                 throw new ArgumentNullException(nameof(authorizeData));
             }
 
-            IEnumerable<string> roles = Enumerable.Empty<string>();
+            RolesAuthorizationRequirement rolesAuthorizationRequirement = new RolesAuthorizationRequirement(Enumerable.Empty<string>());
             foreach (var authorizeDatum in authorizeData)
             {
                 var rolesSplit = authorizeDatum.Roles?.Split(',');
                 if (rolesSplit != null && rolesSplit.Any())
                 {
                     var trimmedRolesSplit = rolesSplit.Where(r => !string.IsNullOrWhiteSpace(r)).Select(r => r.Trim());
-                    roles = trimmedRolesSplit;
+                    rolesAuthorizationRequirement = new RolesAuthorizationRequirement(trimmedRolesSplit);
                 }
               
             }
-            return new AuthorizationRolePolicy(roles);
+            return Task.FromResult(new AuthorizationRolePolicy(rolesAuthorizationRequirement));
         }
     }
 }
